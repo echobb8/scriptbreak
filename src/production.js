@@ -1,5 +1,5 @@
 const Production = (() => {
-const DEFAULT_EDITION = 'kids-3d';
+const DEFAULT_EDITION = 'biblical-period';
 const EDITION_LABEL = DEFAULT_EDITION === 'kids-3d' ? "Children's 3D · ages 5–8" : 'Biblical Cinema';
 function defaultProduction() {
     return { edition: DEFAULT_EDITION, storyMode: 'original', era: '', region: '', passage: '', translation: '', interpretation: '' };

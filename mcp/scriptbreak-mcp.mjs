@@ -39,7 +39,7 @@ function appDataDir() {
   return process.env.XDG_CONFIG_HOME || join(home, '.config')
 }
 
-const DEFAULT_PROJECT = join(appDataDir(), 'com.wasserman.scriptbreak.kids3d', 'project.scriptbreak')
+const DEFAULT_PROJECT = join(appDataDir(), 'com.wasserman.scriptbreak.biblical', 'project.scriptbreak')
 
 // Resolve the project file: explicit arg > SCRIPTBREAK_PROJECT env > default.
 function resolveProjectPath(args) {

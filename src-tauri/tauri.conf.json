@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "ScriptBreak Kids 3D",
+  "productName": "ScriptBreak Biblical Cinema",
   "version": "1.0.0",
-  "identifier": "com.wasserman.scriptbreak.kids3d",
+  "identifier": "com.wasserman.scriptbreak.biblical",
   "build": {
     "frontendDist": "../src",
     "beforeBuildCommand": ""
@@ -11,7 +11,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "ScriptBreak Kids 3D",
+        "title": "ScriptBreak Biblical Cinema",
         "width": 1440,
         "height": 900,
         "minWidth": 900,
