@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "ScriptBreak",
+  "productName": "ScriptBreak Kids 3D",
   "version": "1.0.0",
-  "identifier": "com.wasserman.scriptbreak",
+  "identifier": "com.wasserman.scriptbreak.kids3d",
   "build": {
     "frontendDist": "../src",
     "beforeBuildCommand": ""
@@ -11,7 +11,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "ScriptBreak",
+        "title": "ScriptBreak Kids 3D",
         "width": 1440,
         "height": 900,
         "minWidth": 900,
@@ -36,7 +36,9 @@
     ],
     "fileAssociations": [
       {
-        "ext": ["scriptbreak"],
+        "ext": [
+          "scriptbreak"
+        ],
         "name": "ScriptBreak Project",
         "description": "ScriptBreak breakdown project",
         "role": "Editor",

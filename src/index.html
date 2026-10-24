@@ -219,9 +219,17 @@
     .sd-script{border-right:none;border-bottom:1px solid var(--line)}
     .look-grid{grid-template-columns:1fr}
   }
+.production-editor{position:relative;flex-shrink:0;app-region:no-drag;-webkit-app-region:no-drag;font-size:12px;line-height:1.5;color:var(--text,var(--tx,#e8ebf4))}
+.production-editor>summary{cursor:pointer;padding:6px 10px;border:1px solid var(--line,#354052);border-radius:6px;background:var(--panel,var(--bg2,#171c28));color:inherit;white-space:nowrap}
+.production-editor>summary:focus-visible,.production-editor input:focus-visible,.production-editor select:focus-visible{outline:2px solid var(--accent,#7dd3fc);outline-offset:2px}
+.production-editor[open]>.production-fields{position:absolute;z-index:1000;top:calc(100% + 8px);right:0;width:min(420px,calc(100vw - 32px));max-height:70vh;overflow:auto;box-sizing:border-box;padding:20px;background:var(--panel,var(--bg2,#171c28));border:1px solid var(--line,#354052);border-radius:10px;color:inherit;box-shadow:0 12px 28px rgba(0,0,0,.3)}
+.production-fields label{display:block;margin:12px 0;color:inherit}.production-fields input,.production-fields select{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:8px;color:inherit;background:var(--bg,var(--bg1,#0b0e14));border:1px solid var(--line,#354052);border-radius:6px;font:inherit}
+.production-fields h3{font:inherit;font-weight:600;margin:20px 0 8px}.production-fields p{margin:8px 0}.production-fields ul{margin:0;padding-left:20px}.production-fields li{margin:8px 0}.production-fields ::selection{background:var(--accent,#7dd3fc);color:var(--bg,#0b0e14)}
+
 </style>
 </head>
 <body>
+<script src="production.js"></script>
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="sbGrad" x1="0" y1="0" x2="1" y2="1">
@@ -555,6 +563,7 @@ function capsFinds(sc, castSet){
 
 /* ================= state ================= */
 const blankState = () => ({
+  production: Production.defaultProduction(),
   title: 'Untitled Project',
   scriptName: '',
   scenes: [],
@@ -983,121 +992,8 @@ function suggestFor(sc){
 </script>
 <script>
 /* ================= demo script ================= */
-const DEMO_SCRIPT = `Title: THE LAST TRANSMISSION
-Credit: written by
-Author: Sam Wasserman
-Draft date: 7/18/2026
-
-FADE IN:
-
-EXT. COASTAL HIGHWAY - NIGHT
-
-Rain hammers a lonely two-lane blacktop. A battered PICKUP TRUCK rounds the bend, one headlight out, wipers losing the fight.
-
-INT. PICKUP TRUCK - NIGHT
-
-MARA VANCE, late 30s, buzzed dark hair, an olive M-65 jacket two sizes too big, grips the wheel. On the bench seat: a TAPE RECORDER wrapped in a plastic bag.
-
-The radio spits static. Then — a voice, buried in the noise.
-
-RADIO VOICE (V.O.)
-(filtered, broken)
-...if anyone can hear this... the light on Point Bastion... it's still on...
-
-Mara turns it up. Static swallows the voice. She slams the dash.
-
-MARA
-Come on. Come on.
-
-EXT. POINT BASTION LIGHTHOUSE - NIGHT
-
-The truck skids to a stop on a gravel turnout. Above, an old LIGHTHOUSE — dark. Dead. Mara steps out into the rain, flashlight in hand.
-
-At the base of the tower, a rusted steel door hangs open, groaning on the wind.
-
-INT. LIGHTHOUSE - STAIRWELL - CONTINUOUS
-
-Mara climbs the spiral stairs, flashlight beam sweeping over peeling paint and salt-rot. Her boots ring on the iron steps.
-
-Halfway up, she stops. Listens.
-
-Below her, faint — the steel door CLANGS shut.
-
-MARA
-(calling down)
-Eli?
-
-Silence. She keeps climbing, faster now.
-
-INT. LIGHTHOUSE - LAMP ROOM - NIGHT
-
-A round room of glass and rust. The great lamp sits cold. Sitting cross-legged beneath it: ELI TRAN, 40s, wire-rim glasses, a thrift-store cardigan over a HAM RADIO rig cannibalized into something stranger.
-
-ELI
-You brought the tapes.
-
-MARA
-You said it was still broadcasting.
-
-Eli flips a switch. The rig hums. Dials glow amber.
-
-ELI
-Every night. Same time. Forty-one seconds.
-(beat)
-Tonight it said your name.
-
-Mara unwraps the tape recorder. Her hands are shaking.
-
-INT. LIGHTHOUSE - LAMP ROOM - LATER
-
-The tape spools. Through the speaker, wind — then the RADIO VOICE, clearer now. It is unmistakably MARA'S OWN VOICE.
-
-MARA (ON TAPE) (V.O.)
-Don't light the lamp. Whatever he tells you — don't light the lamp.
-
-Eli and Mara stare at each other. Outside the glass, far out to sea, a light blinks on. Then another. A dozen. A hundred.
-
-ELI
-(whisper)
-They found us.
-
-EXT. POINT BASTION LIGHTHOUSE - NIGHT
-
-The dark tower stands against a sea now scattered with cold blue lights, closing in like a tide.
-
-MARA (V.O.)
-(pre-lap)
-How long do we have?
-
-INT. LIGHTHOUSE - LAMP ROOM - NIGHT
-
-Eli cranks a hand generator. Cables snake to the great lamp.
-
-ELI
-If I'm right? Until dawn.
-(beat)
-If I'm wrong, we never had any time at all.
-
-Mara looks at the tape recorder. At the lamp. At the lights on the water.
-
-She picks up the IGNITION LEVER.
-
-MARA
-Then let's be wrong together.
-
-She pulls it. The great lamp EXPLODES with light —
-
-SMASH CUT TO:
-
-EXT. OPEN OCEAN - NIGHT
-
-A single beam sweeps the black water. The blue lights, hundreds of them, all go dark at once.
-
-Silence. Rain. And then, from everywhere and nowhere, the sound of a HUNDRED RADIOS tuning at once.
-
-FADE OUT.
-
-THE END`;
+const PRODUCTION_DEMOS = {"kids-3d": "Title: THE LITTLE SEED TEAM\nCredit: Illustrative production-edition sample\n\nEXT. STYLIZED GARDEN - DAY\n\nMILO, a small amber fox in teal overalls, finds a seed beside a dry garden bed. PIP, a lavender bird with a yellow scarf, hops closer.\n\nMILO\nThis little seed needs a home.\n\nPip points toward a shallow patch of soil. Milo pauses to look, then nods.\n\nEXT. STYLIZED GARDEN - LATER\n\nMilo carefully covers the seed. Pip helps point the blue watering can toward the soil. They take turns. Leave time for their shared smile.\n\nPIP\nA little water. Then we wait.\n\nEXT. STYLIZED GARDEN - ANOTHER DAY\n\nA clear passage of time. A tiny sprout stands in the garden bed. Milo and Pip look at it together. Their approved proportions, colors and costumes stay unchanged.\n\nMILO\nWe helped it together.\n\nThey sit nearby, happy and calm.\n", "biblical-original": "Title: THE POTTER'S PROMISE\nCredit: Illustrative original historical fiction\n\n/* Fictional village in early Roman-period Galilee. Material-culture reconstruction requires source review. This is not a biblical account. */\n\nINT. POTTERY WORKSHOP - DAY\n\nDaylight falls across a clay vessel. A POTTER notices a crack and sets it down. An ASSISTANT waits beside the work surface. Clothing, tools, vessel forms and building materials follow reviewed period references.\n\nASSISTANT\nCan it still hold water?\n\nThe potter examines the unfired clay before answering.\n\nPOTTER\nNot yet. We can begin again.\n\nINT. POTTERY WORKSHOP - LATER\n\nThe assistant watches the potter reshape the clay. Show believable hand contact and weight. The precise craft technique remains subject to specialist review.\n\nEXT. WORKSHOP COURTYARD - LATER\n\nThey place the remade vessel in the approved drying area. The assistant clears a space for the next piece. A quiet shared look closes the scene.\n", "biblical-scripture": "Title: RUTH IN THE FIELD — ADAPTATION STUDY\nCredit: Paraphrase study of Ruth 2:1–7\n\n/* Choose a translation before adding quotations. No direct biblical dialogue is quoted here. Date, clothing, landscape and tools require review. */\n\nEXT. FIELD NEAR BETHLEHEM - DAY\n\nRUTH gleans behind the reapers. The frame establishes the field and her place within it.\n\n/* Paraphrase: Ruth 2:3. Exact blocking and camera choices are invented for the adaptation. */\n\nEXT. FIELD NEAR BETHLEHEM - CONTINUOUS\n\nA detail of Ruth gathering remaining grain. Use reviewed agricultural and clothing references.\n\n/* Historical inference from the gleaning context; the exact hand action is a reconstruction, not a direct quotation. */\n"};
+const DEMO_SCRIPT = PRODUCTION_DEMOS[Production.defaultProduction().edition === "kids-3d" ? "kids-3d" : "biblical-original"];
 
 /* ================= navigation ================= */
 document.querySelectorAll('.nav-btn').forEach(b=>{
@@ -2404,8 +2300,8 @@ el('btnSaveProj').addEventListener('click', ()=>{
   toast('Project saved — keep the .scriptbreak file anywhere', true);
 });
 el('projTitle').addEventListener('input', ()=>{ S.title = el('projTitle').value; persist(); });
-el('btnDemo').addEventListener('click', ()=>importText(DEMO_SCRIPT,'THE LAST TRANSMISSION.fountain'));
-el('demoLink').addEventListener('click', e=>{ e.preventDefault(); importText(DEMO_SCRIPT,'THE LAST TRANSMISSION.fountain'); });
+el('btnDemo').addEventListener('click', ()=>importText(DEMO_SCRIPT,'production-demo.fountain'));
+el('demoLink').addEventListener('click', e=>{ e.preventDefault(); importText(DEMO_SCRIPT,'production-demo.fountain'); });
 
 const dz = el('dropzone');
 dz.addEventListener('click', ()=>el('fileInput').click());
@@ -2617,6 +2513,8 @@ ${S.styleGuide.text}
 
 function packHeader(kind){
   return `# ${S.title} — ${kind}
+${Production.productionDirection(S.production)}
+
 *Generated by ScriptBreak (Wasserman Filmmaker Suite) · ${new Date().toLocaleDateString()} · scope: ${scopeLabel()}*
 
 > **HOW TO USE THIS FILE:** Paste this entire document into any AI assistant (Claude, ChatGPT, Gemini — whatever you already use). It contains its own instructions. The assistant will do the rest. Nothing about this file requires an API key or a particular tool.
@@ -2834,7 +2732,8 @@ function openBreakdownSheets(){
     .cl{width:150px;min-width:150px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;color:#444;border-right:1px solid #ccc;font-weight:700}
     .ci{padding:8px 16px;font-size:13px}
     @media print{.sheet{margin-bottom:14px}}
-  </style></head><body>${sheets}<script>window.print()<\/script></body></html>`);
+  </style></head><body>${sheets}<script>window.print()<\/script>
+</body></html>`);
   w.document.close();
 }
 
@@ -3198,6 +3097,38 @@ function renderExport(){
     }
   }catch(e){}
 })();
+</script>
+<script>
+
+function mountProductionEditor(getProduction, setProduction, host) {
+  const details = document.createElement('details');
+  details.className = 'production-editor';
+  const summary = document.createElement('summary'); summary.textContent = 'Production';
+  const form = document.createElement('div'); form.className = 'production-fields';
+  details.append(summary, form); host.append(details);
+  function renderFields() {
+    const p = Production.normalizeProduction(getProduction()); form.replaceChildren();
+    function field(key, label, choices) {
+      const row = document.createElement('label'); row.append(document.createTextNode(label));
+      const input = document.createElement(choices ? 'select' : 'input');
+      if (choices) for (const [value, text] of choices) { const option = document.createElement('option'); option.value = value; option.textContent = text; input.append(option); }
+      input.value = p[key]; row.append(input); form.append(row);
+      input.addEventListener(choices ? 'change' : 'input', () => { setProduction(Production.normalizeProduction({ ...Production.normalizeProduction(getProduction()), [key]: input.value })); if (choices) renderFields(); });
+    }
+    field('edition', 'Production edition', [['kids-3d', 'Children’s 3D · ages 5–8'], ['biblical-period', 'Realistic biblical period'], ['general', 'General filmmaking']]);
+    if (p.edition === 'biblical-period') {
+      field('storyMode', 'Story mode', [['original', 'Original period story'], ['scripture', 'Scripture adaptation']]);
+      field('era', 'Historical period'); field('region', 'Region and community');
+      if (p.storyMode === 'scripture') { field('passage', 'Source passage'); field('translation', 'Bible translation'); }
+      field('interpretation', 'Interpretive choices and source notes');
+    }
+    const heading=document.createElement('h3'); heading.textContent='Production review'; form.append(heading);
+    for (const item of Production.productionReview(p)) { const text=document.createElement('p'); text.textContent=item; form.append(text); }
+  }
+  details.addEventListener('toggle', () => { if (details.open) renderFields(); });
+}
+
+mountProductionEditor(() => S.production, (production) => { S.production = production; saveDB(); }, document.querySelector('#topbar') || document.querySelector('header') || document.body);
 </script>
 </body>
 </html>
